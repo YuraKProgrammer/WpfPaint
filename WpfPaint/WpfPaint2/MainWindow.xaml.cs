@@ -24,7 +24,8 @@ namespace WpfPaint2
         double radius = 10;
         Color color = Colors.Red;
         int i = 10;
-        Random random = new Random();
+        PaintUtils paintUtils = new PaintUtils();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -43,24 +44,16 @@ namespace WpfPaint2
             Canvas.SetTop(ellipse, pos.Y - radius);
             _canvas.Children.Add(ellipse);
 
-            var r = NewValue(color.R);
-            var g = NewValue(color.G);
-            var b = NewValue(color.B);
-            color = Color.FromArgb(color.A, r, g, b);
+            var r = paintUtils.NewValue(color.R, 32);
+            var g = paintUtils.NewValue(color.G, 32);
+            var b = paintUtils.NewValue(color.B, 32);
+            var a = paintUtils.GetAlpha(r + g + b);
+            color = Color.FromArgb(a , r, g, b);
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _canvas.Children.Clear();
         }    
-        private byte NewValue (byte value)
-        {
-            var dif = random.Next(-32, 32);
-            var result = value + dif;
-            if (result > 255)
-                result = 255;
-            if (result < 0)
-                result = 0;
-            return (byte)result;
-        }
+        
     }
 }

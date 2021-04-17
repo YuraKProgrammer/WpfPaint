@@ -5,3 +5,7 @@
 /WpfPaint/WpfPaint2/obj/Debug
 /WpfPaint/WpfPaint2/bin/Debug
 *.suo
+/WpfPaint/TestProject1/bin/Debug/net472
+/WpfPaint/TestProject1/obj
+/.vs
+/WpfPaint/.vs/WpfPaint/v16/TestStore/0
