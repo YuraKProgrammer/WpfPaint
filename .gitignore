@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/WpfPaint/WpfPaint2/obj/Debug
+/WpfPaint/WpfPaint2/bin/Debug
+*.suo

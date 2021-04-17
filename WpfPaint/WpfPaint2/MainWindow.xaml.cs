@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WpfPaint2
 {
@@ -22,6 +23,8 @@ namespace WpfPaint2
     {
         double radius = 10;
         Color color = Colors.Red;
+        int i = 10;
+        Random random = new Random();
         public MainWindow()
         {
             InitializeComponent();
@@ -32,44 +35,32 @@ namespace WpfPaint2
             var pos = e.GetPosition(_canvas);
             var ellipse = new Ellipse
             {
-                Fill=new SolidColorBrush(color),
-                Width=2*radius,
-                Height=2*radius
+                Fill = new SolidColorBrush(color),
+                Width = 2 * radius,
+                Height = 2 * radius
             };
             Canvas.SetLeft(ellipse, pos.X - radius);
             Canvas.SetTop(ellipse, pos.Y - radius);
             _canvas.Children.Add(ellipse);
-        }
 
+            var r = NewValue(color.R);
+            var g = NewValue(color.G);
+            var b = NewValue(color.B);
+            color = Color.FromArgb(color.A, r, g, b);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _canvas.Children.Clear();
-        }
-
-        private void RadiusTextChanged(object sender, TextChangedEventArgs e)
+        }    
+        private byte NewValue (byte value)
         {
-            if (double.TryParse(_radiusText.Text, out var r))
-                radius = r;
-        }        
-        private void RTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (byte.TryParse(_rText.Text, out var r))
-                color = Color.FromArgb(color.A ,r, color.G, color.B);
-        }        
-        private void GTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (byte.TryParse(_gText.Text, out var g))
-                color = Color.FromArgb(color.A, color.R, g, color.B);
-        }        
-        private void BTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (byte.TryParse(_bText.Text, out var b))
-                color = Color.FromArgb(color.A, color.R, color.G, b);
-        }
-        private void ATextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (byte.TryParse(_aText.Text, out var a))
-                color = Color.FromArgb(a, color.R, color.G, color.B);
+            var dif = random.Next(-32, 32);
+            var result = value + dif;
+            if (result > 255)
+                result = 255;
+            if (result < 0)
+                result = 0;
+            return (byte)result;
         }
     }
 }

@@ -14,26 +14,6 @@
         <Canvas x:Name="_canvas" Background="#202020" Grid.Row="1" MouseDown="_canvas_MouseDown"/>
         <StackPanel Orientation="Horizontal">
             <Button Content="Очистить" Click="Button_Click"/>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="Radius: "/>
-                <TextBox Text="5" TextChanged="RadiusTextChanged" x:Name="_radiusText"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="R: "/>
-                <TextBox Text="5" TextChanged="RTextChanged" x:Name="_rText"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="G: "/>
-                <TextBox Text="5" TextChanged="GTextChanged" x:Name="_gText"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="B: "/>
-                <TextBox Text="5" TextChanged="BTextChanged" x:Name="_bText"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="A: "/>
-                <TextBox Text="255" TextChanged="ATextChanged" x:Name="_aText"/>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
